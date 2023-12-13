@@ -11,7 +11,7 @@ int execute(data_of_program *data)
 	int retrnval = 0, status;
 	pid_t pidd;
 	/* Check if the program is a built-in command */
-	retrnval = builtin_lists(data);
+	retrnval = builtins_list(data);
 	if (retrnval != -1) /* If the program was found in built ins */
 		return (retrnval);
 	/* Check for the program in the file system */
