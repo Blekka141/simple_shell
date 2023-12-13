@@ -1,10 +1,11 @@
 #include "shell.h"
 
 /**
- * expand_variables - expand variables
- * @data: a pointer to a struct of the program's data
- *
- * Return: nothing, but sets errno.
+ * expand_variables - Expand variables in the input line.
+ * @data: Pointer to the program's data structure.
+ * This function expands variables like "$?" and "$$" in the input line, 
+ * and sets the expanded input line in the program's data structure.
+ * Return: Nothing, but sets errno on error.
  */
 void expand_variables(data_of_program *data)
 {
@@ -19,6 +20,7 @@ void expand_variables(data_of_program *data)
 			line[i--] = '\0';
 		else if (line[i] == '$' && line[i + 1] == '?')
 		{
+			/* Expand "$?" with the value of errno */
 			line[i] = '\0';
 			long_to_string(errno, expansion, 10);
 			buffer_add(line, expansion);
@@ -26,15 +28,18 @@ void expand_variables(data_of_program *data)
 		}
 		else if (line[i] == '$' && line[i + 1] == '$')
 		{
+			/* Expand "$$" with the current process ID */
 			line[i] = '\0';
 			long_to_string(getpid(), expansion, 10);
 			buffer_add(line, expansion);
 			buffer_add(line, data->input_line + i + 2);
 		}
 		else if (line[i] == '$' && (line[i + 1] == ' ' || line[i + 1] == '\0'))
+			/* Skip "$" if it's not followed by a space or is at the end of the line */
 			continue;
 		else if (line[i] == '$')
 		{
+			/* Expand other variables of the form "$VAR" */
 			for (j = 1; line[i + j] && line[i + j] != ' '; j++)
 				expansion[j - 1] = line[i + j];
 			temp = env_get_key(expansion, data);
@@ -51,10 +56,11 @@ void expand_variables(data_of_program *data)
 }
 
 /**
- * expand_alias - expans aliases
- * @data: a pointer to a struct of the program's data
- *
- * Return: nothing, but sets errno.
+ * expand_alias - Expand aliases in the input line.
+ * @data: Pointer to the program's data structure.
+ *This function expands aliases in the input line and sets the expanded input
+ * line in the program's data structure.
+ * Return: Nothing, but sets errno on error.
  */
 void expand_alias(data_of_program *data)
 {
@@ -93,10 +99,10 @@ void expand_alias(data_of_program *data)
 }
 
 /**
- * buffer_add - append string at end of the buffer
- * @buffer: buffer to be filled
- * @str_to_add: string to be copied in the buffer
- * Return: nothing, but sets errno.
+ * buffer_add - Append a string at the end of the buffer.
+ * @buffer: The buffer to be filled.
+ * @str_to_add: The string to be copied into the buffer.
+ * Return: Nothing, but sets errno on error.
  */
 int buffer_add(char *buffer, char *str_to_add)
 {
