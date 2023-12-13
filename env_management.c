@@ -38,7 +38,8 @@ char *env_get_key(char *key, data_of_program *data)
  * @key: Name of the variable to set.
  * @value: New value
  * @data: Pointer to the program's data structure.
- * Return: 1 if the parameters are NULL, 2 if there is an erroror, or 0 on success.
+ * Return: 1 if the parameters are NULL, 2 if there is an erroror,
+ *or 0 on success.
  */
 
 int env_set_key(char *key, char *value, data_of_program *data)
@@ -54,11 +55,12 @@ int env_set_key(char *key, char *value, data_of_program *data)
 
 	for (n = 0; data->env[n]; n++)
 	{
-		/* Iterates through the environment and check for a match */
+	     /* Iterates through the environment and check for a match */
 		if (str_compare(key, data->env[n], key_length) &&
 		 data->env[n][key_length] == '=')
 		{
-			/* If key already exists, free the entire variable (it will be recreated below) */
+		  /* If key already exists, free the entire variable */
+		  /*(it will be recreated below) */
 			is_new_key = 0;
 			free(data->env[n]);
 			break;
@@ -70,7 +72,8 @@ int env_set_key(char *key, char *value, data_of_program *data)
 
 	if (is_new_key)
 	{
-		/* If the variable is new, create it at the end of the current list and set */
+	  /* If the variable is new, create it at the end of the */
+	  /* current list and set */
 		/* NULL as the next value */
 		data->env[n + 1] = NULL;
 	}
