@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * builtins_list - search for match and execute the associate builtin
+ * builtins_list - Search for a matching built-in command and exectutes it.
  * @data: struct for the program's data
  * Return: Returns the return of the function executed is there is a match,
  * otherwise returns -1.
@@ -20,16 +20,16 @@ int builtins_list(data_of_program *data)
 		{NULL, NULL}
 	};
 
-/*walk through the structure*/
+/* Walk through the built-in command structure */
 	for (iterator = 0; options[iterator].builtin != NULL; iterator++)
 	{
-/*if there is a match between the given command and a builtin,*/
+/* Check if there is a match between the given command and a built-in,*/
 		if (str_compare(options[iterator].builtin, data->command_name, 0))
 		{
-/*execute the function, and return the return value of the function*/
+/* Execute the function, and return its return value */
 			return (options[iterator].function(data));
 		}
-/*if there is no match return -1 */
+/* If there is no match, return -1 */
 	}
 	return (-1);
 }
