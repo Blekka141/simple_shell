@@ -6,9 +6,10 @@
  * @data: Pointer to the program's data structure.
  * Return: A pointer to the value of the variable or NULL if it doesn't exist.
  */
+
 char *env_get_key(char *key, data_of_program *data)
 {
-	int i, key_length = 0;
+	int n, key_length = 0;
 
 	/* Validate the arguments */
 	if (key == NULL || data->env == NULL)
@@ -17,14 +18,14 @@ char *env_get_key(char *key, data_of_program *data)
 	/* Obtains the length of the variable requested */
 	key_length = str_length(key);
 
-	for (i = 0; data->env[i]; i++)
+	for (n = 0; data->env[n]; n++)
 	{
 		/* Iterates through the environment and check for a match */
-		if (str_compare(key, data->env[i], key_length) &&
-		 data->env[i][key_length] == '=')
+		if (str_compare(key, data->env[n], key_length) &&
+		 data->env[n][key_length] == '=')
 		{
 			/* Returns the value of the key (NAME=) */
-			return (data->env[i] + key_length + 1);
+			return (data->env[n] + key_length + 1);
 		}
 	}
 	/* Returns NULL if the variable is not found. */
@@ -32,7 +33,8 @@ char *env_get_key(char *key, data_of_program *data)
 }
 
 /**
- * env_set_key - Overwrite the value of an environment variable or creates it if it does not exist.
+ * env_set_key - Overwrite the value of an environment variable
+ * or creates it if it does not exist.
  * @key: Name of the variable to set.
  * @value: New value
  * @data: Pointer to the program's data structure.
@@ -41,7 +43,7 @@ char *env_get_key(char *key, data_of_program *data)
 
 int env_set_key(char *key, char *value, data_of_program *data)
 {
-	int i, key_length = 0, is_new_key = 1;
+	int n, key_length = 0, is_new_key = 1;
 
 	/* Validate the arguments */
 	if (key == NULL || value == NULL || data->env == NULL)
@@ -50,27 +52,27 @@ int env_set_key(char *key, char *value, data_of_program *data)
 	/* Obtains the length of the variable requested */
 	key_length = str_length(key);
 
-	for (i = 0; data->env[i]; i++)
+	for (n = 0; data->env[n]; n++)
 	{
 		/* Iterates through the environment and check for a match */
-		if (str_compare(key, data->env[i], key_length) &&
-		 data->env[i][key_length] == '=')
+		if (str_compare(key, data->env[n], key_length) &&
+		 data->env[n][key_length] == '=')
 		{
 			/* If key already exists, free the entire variable (it will be recreated below) */
 			is_new_key = 0;
-			free(data->env[i]);
+			free(data->env[n]);
 			break;
 		}
 	}
 	/* Creates a string in the form key=value */
-	data->env[i] = str_concat(str_duplicate(key), "=");
-	data->env[i] = str_concat(data->env[i], value);
+	data->env[n] = str_concat(str_duplicate(key), "=");
+	data->env[n] = str_concat(data->env[n], value);
 
 	if (is_new_key)
 	{
 		/* If the variable is new, create it at the end of the current list and set */
 		/* NULL as the next value */
-		data->env[i + 1] = NULL;
+		data->env[n + 1] = NULL;
 	}
 	return (0);
 }
@@ -83,7 +85,7 @@ int env_set_key(char *key, char *value, data_of_program *data)
  */
 int env_remove_key(char *key, data_of_program *data)
 {
-	int i, key_length = 0;
+	int n, key_length = 0;
 
 	/* Validate the arguments */
 	if (key == NULL || data->env == NULL)
@@ -92,22 +94,22 @@ int env_remove_key(char *key, data_of_program *data)
 	/* Obtains the length of the variable requested */
 	key_length = str_length(key);
 
-	for (i = 0; data->env[i]; i++)
+	for (n = 0; data->env[n]; n++)
 	{
 		/* Iterates through the environment and checks for matches */
-		if (str_compare(key, data->env[i], key_length) &&
-		 data->env[i][key_length] == '=')
+		if (str_compare(key, data->env[n], key_length) &&
+		 data->env[n][key_length] == '=')
 		{
 			/* If the key already exists, remove it and shift the other keys down */
-			free(data->env[i]);
+			free(data->env[n]);
 
-			i++;
-			for (; data->env[i]; i++)
+			n++;
+			for (; data->env[n]; n++)
 			{
-				data->env[i - 1] = data->env[i];
+				data->env[n - 1] = data->env[n];
 			}
 			/* Set NULL value as the new end of the list */
-			data->env[i - 1] = NULL;
+			data->env[n - 1] = NULL;
 			return (1);
 		}
 	}

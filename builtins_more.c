@@ -5,15 +5,16 @@
  * @data: Pointer to the program's data structure.
  * Return: Returns zero on success or other values for specific error conditions.
  */
+
 int builtin_exit(data_of_program *data)
 {
-	int i;
+	int index;
 
 	if (data->tokens[1] != NULL)
 	{/*if exists arg for exit, check if is a number*/
-		for (i = 0; data->tokens[1][i]; i++)
-			if ((data->tokens[1][i] < '0' || data->tokens[1][i] > '9')
-				&& data->tokens[1][i] != '+')
+		for (index = 0; data->tokens[1][index]; i++)
+			if ((data->tokens[1][index] < '0' || data->tokens[1][index] > '9')
+				&& data->tokens[1][index] != '+')
 			{/*if is not a number*/
 				errno = 2;
 				return (2);
@@ -49,7 +50,7 @@ int builtin_cd(data_of_program *data)
 		}
 		else
 		{
-			return (set_work_directory(data, data->tokens[1]));
+			return (set_working_directory(data, data->tokens[1]));
 		}
 	}
 	else
@@ -57,18 +58,18 @@ int builtin_cd(data_of_program *data)
 		if (!dir_home)
 			dir_home = getcwd(old_dir, 128);
 
-		return (set_work_directory(data, dir_home));
+		return (set_working_directory(data, dir_home));
 	}
 	return (0);
 }
 
 /**
- * set_work_directory - Sets the work directory
+ * set_working_directory - Sets the working directory
  * @data: Pointer to the program's data structure.
  * @new_dir: Path to be set as the working directory.
  * Return: Returns zero on success or other values for specific error conditions.
  */
-int set_work_directory(data_of_program *data, char *new_dir)
+int set_working_directory(data_of_program *data, char *new_dir)
 {
 	char old_dir[128] = {0};
 	int err_code = 0;
@@ -96,15 +97,15 @@ int set_work_directory(data_of_program *data, char *new_dir)
  */
 int builtin_help(data_of_program *data)
 {
-	int i, length = 0;
-	char *mensajes[6] = {NULL};
+	int index, length = 0;
+	char *messges[6] = {NULL};
 
-	mensajes[0] = HELP_MSG;
+	messges[0] = HELP_MSG;
 
 	/* Validate arguments */
 	if (data->tokens[1] == NULL)
 	{
-		_print(mensajes[0] + 6);
+		_print(messges[0] + 6);
 		return (1);
 	}
 	if (data->tokens[2] != NULL)
@@ -113,18 +114,18 @@ int builtin_help(data_of_program *data)
 		perror(data->command_name);
 		return (5);
 	}
-	mensajes[1] = HELP_EXIT_MSG;
-	mensajes[2] = HELP_ENV_MSG;
-	mensajes[3] = HELP_SETENV_MSG;
-	mensajes[4] = HELP_UNSETENV_MSG;
-	mensajes[5] = HELP_CD_MSG;
+	messges[1] = HELP_EXIT_MSG;
+	messges[2] = HELP_ENV_MSG;
+	messges[3] = HELP_SETENV_MSG;
+	messges[4] = HELP_UNSETENV_MSG;
+	messges[5] = HELP_CD_MSG;
 
-	for (i = 0; mensajes[i]; i++)
+	for (index = 0; messges[index]; index++)
 	{
 		length = str_length(data->tokens[1]);
-		if (str_compare(data->tokens[1], mensajes[i], length))
+		if (str_compare(data->tokens[1], messges[index], length))
 		{
-			_print(mensajes[i] + length + 1);
+			_print(messges[index] + length + 1);
 			return (1);
 		}
 	}
@@ -141,19 +142,19 @@ int builtin_help(data_of_program *data)
  */
 int builtin_alias(data_of_program *data)
 {
-	int i = 0;
+	int index = 0;
 
 	/* If there are no arguments, print all aliases */
 	if (data->tokens[1] == NULL)
 		return (print_alias(data, NULL));
 
-	while (data->tokens[++i])
+	while (data->tokens[++index])
 	{
 		/* if there are arguments, set or print each alias */
-		if (count_characters(data->tokens[i], "="))
-			set_alias(data->tokens[i], data);
+		if (count_characters(data->tokens[index], "="))
+			set_alias(data->tokens[index], data);
 		else
-			print_alias(data, data->tokens[i]);
+			print_alias(data, data->tokens[index]);
 	}
 
 	return (0);

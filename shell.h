@@ -52,8 +52,7 @@ typedef struct info
 typedef struct builtins
 {
 	char *builtin;
-	int (*function)(data_of_program *data);
-} builtins;
+	int (*function)(data_of_program *data);} builtins;
 
 
 /************* MAIN FUNCTIONS *************/
@@ -110,7 +109,7 @@ int execute(data_of_program *data);
 /*======== builtins_list.c ========*/
 
 /* If match a builtin, executes it */
-int builtins_list(data_of_program *data);
+int builtin_lists(data_of_program *data);
 
 
 /*======== find_in_path.c ========*/
@@ -149,7 +148,7 @@ int builtin_exit(data_of_program *data);
 int builtin_cd(data_of_program *data);
 
 /* set the work directory */
-int set_work_directory(data_of_program *data, char *new_dir);
+int set_working_directory(data_of_program *data, char *new_dir);
 
 /* show help information */
 int builtin_help(data_of_program *data);
@@ -164,10 +163,10 @@ int builtin_alias(data_of_program *data);
 int builtin_env(data_of_program *data);
 
 /* create or override a variable of environment */
-int builtin_set_env(data_of_program *data);
+int builtin_sets_env(data_of_program *data);
 
 /* delete a variable of environment */
-int builtin_unset_env(data_of_program *data);
+int builtin_unsets_env(data_of_program *data);
 
 
 /************** HELPERS FOR ENVIRONMENT VARIABLES MANAGEMENT **************/
