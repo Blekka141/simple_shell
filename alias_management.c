@@ -4,7 +4,8 @@
  * print_alias - Displays aliased or performs alias-related operations.
  * @data: Pointer to the program's data structure.
  * @alias: Name of the alias to be displayed.
- * Return: Returns zero on success or other values for specific error conditions.
+ * Return: Returns zero on success or other values for specific error
+ *conditions.
  */
 
 int print_alias(data_of_program *data, char *alias)
@@ -41,7 +42,7 @@ int print_alias(data_of_program *data, char *alias)
 }
 
 /**
- * get_alias - Retrieves the value of an alias by its name. 
+ * get_alias - Retrieves the value of an alias by its name.
  * @data: Pointer to the program's data structure.
  * @name: Name of the requested alias.
  * Return: Returns the alias value if found, or NULL if not found.
@@ -74,7 +75,8 @@ char *get_alias(data_of_program *data, char *name)
  * set_alias - Adds or overrides an alias
  * @alias_string: The alias to be set in the format (name='value')
  * @data: Pointer to the program's data structure.
- * Return: Returns zero on success or other values for specific error conditions.
+ * Return: Returns zero on success or other values for specific
+ * error conditions.
  */
 int set_alias(char *alias_string, data_of_program *data)
 {
@@ -105,12 +107,12 @@ int set_alias(char *alias_string, data_of_program *data)
 
 	/* Add or update the alias */
 	if (temp)
-	{		
+	{
 		buffer_add(buffer, "=");
 		buffer_add(buffer, temp);
 		data->alias_list[j] = str_duplicate(buffer);
 	}
-	else 
+	else
 		/* If the alias does not exist, create a new one */
 		data->alias_list[j] = str_duplicate(alias_string);
 	return (0);
