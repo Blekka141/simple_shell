@@ -67,7 +67,8 @@ int _atoi(char *s)
 }
 
 /**
- * count_characters - A funct that counts the coincidences of characters in a string.
+ * count_characters - A funct that counts the coincidences of
+ *characters in a string.
  * @string: A pointer to the str origin.
  * @character: The string with chars to be counted.
  * Return: int of string or 0.
