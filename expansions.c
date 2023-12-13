@@ -112,7 +112,7 @@ int buffer_add(char *buffer, char *str_to_add)
 	int length, n;
 
 	length = str_length(buffer);
-	for (i = 0; str_to_add[n]; n++)
+	for (n = 0; str_to_add[n]; n++)
 	{
 		buffer[length + n] = str_to_add[n];
 	}

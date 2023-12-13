@@ -12,7 +12,7 @@ int builtin_exit(data_of_program *data)
 
 	if (data->tokens[1] != NULL)
 	{/*if exists arg for exit, check if is a number*/
-		for (index = 0; data->tokens[1][index]; i++)
+		for (index = 0; data->tokens[1][index]; index++)
 			if ((data->tokens[1][index] < '0' || data->tokens[1][index] > '9')
 				&& data->tokens[1][index] != '+')
 			{/*if is not a number*/
@@ -42,7 +42,7 @@ int builtin_cd(data_of_program *data)
 		{
 			dir_old = env_get_key("OLDPWD", data);
 			if (dir_old)
-				error_code = set_work_directory(data, dir_old);
+				error_code = set_working_directory(data, dir_old);
 			_print(env_get_key("PWD", data));
 			_print("\n");
 

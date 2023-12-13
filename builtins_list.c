@@ -15,8 +15,8 @@ int builtin_lists(data_of_program *data)
 		{"cd", builtin_cd},
 		{"alias", builtin_alias},
 		{"env", builtin_env},
-		{"setenv", builtin_set_env},
-		{"unsetenv", builtin_unset_env},
+		{"setenv", builtin_sets_env},
+		{"unsetenv", builtin_unsets_env},
 		{NULL, NULL}
 	};
 

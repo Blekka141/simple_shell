@@ -42,7 +42,7 @@ int builtin_env(data_of_program *data)
 				}
 				return (0);
 			}
-			cpname[i] = data->tokens[1][i];
+			cpname[index] = data->tokens[1][index];
 		}
 		errno = 2;
 		perror(data->command_name);
