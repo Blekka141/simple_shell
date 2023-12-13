@@ -1,10 +1,11 @@
 #include "shell.h"
 
 /**
- * str_length - returns the length of a string.
- * @string: pointer to string.
- * Return: length of string.
+ * str_length - A funct that returns the length of a string.
+ * @string: A pointer to the string.
+ * Return: The length of the string.
  */
+
 int str_length(char *string)
 {
 	int length = 0;
@@ -19,10 +20,11 @@ int str_length(char *string)
 }
 
 /**
- * str_duplicate - duplicates an string
- * @string: String to be copied
- * Return: pointer to the array
+ * str_duplicate - A funct that duplicates a string.
+ * @string: The string to be duplicated.
+ * Return: The pointer to the array.
  */
+
 char *str_duplicate(char *string)
 {
 	char *result;
@@ -50,12 +52,13 @@ char *str_duplicate(char *string)
 }
 
 /**
- * str_compare - Compare two strings
- * @string1: String one, or the shorter
- * @string2: String two, or the longer
- * @number: number of characters to be compared, 0 if infinite
- * Return: 1 if the strings are equals,0 if the strings are different
+ * str_compare - A funct that compares two strings.
+ * @string1: The first string, or the shorter.
+ * @string2: The second string, or the longer.
+ * @number: The number of characters to be compared, 0 if infinite.
+ * Return: 1 if the strings are equal and 0 if the strings are different.
  */
+
 int str_compare(char *string1, char *string2, int number)
 {
 	int iterator;
@@ -89,12 +92,12 @@ int str_compare(char *string1, char *string2, int number)
 }
 
 /**
- * str_concat - concatenates two strings.
- * @string1: String to be concatenated
- * @string2: String to be concatenated
- *
- * Return: pointer to the array
+ * str_concat - A funct that concatenates two strings.
+ * @string1: The string to be concatenated.
+ * @string2: The string to be concatenated.
+ * Return: A pointer to the array.
  */
+
 char *str_concat(char *string1, char *string2)
 {
 	char *result;
@@ -134,11 +137,11 @@ char *str_concat(char *string1, char *string2)
 
 
 /**
- * str_reverse - reverses a string.
- *
- * @string: pointer to string.
- * Return: void.
+ * str_reverse - A funct that reverses a string.
+ * @string: A pointer to the string.
+ * Return: 0.
  */
+
 void str_reverse(char *string)
 {
 

@@ -20,16 +20,17 @@
 /************* STRUCTURES **************/
 
 /**
- * struct info- struct for the program's data
- * @program_name: the name of the executable
- * @input_line: pointer to the input read for _getline
- * @command_name: pointer to the first command typed by the user
- * @exec_counter: number of excecuted comands
- * @file_descriptor: file descriptor to the input of commands
- * @tokens: pointer to array of tokenized input
- * @env: copy of the environ
- * @alias_list: array of pointers with aliases.
+ * struct info- The struct for the program's data.
+ * @program_name: The executable.
+ * @input_line: The pointer to the input read for _getline.
+ * @command_name: The pointer to the first command typed by the user.
+ * @exec_counter: The number of excecuted comands.
+ * @file_descriptor: The file descriptor to the input of commands.
+ * @tokens:A  pointer to the  array of tokenized input.
+ * @env: A copy of the environ.
+ * @alias_list: The array of pointers with aliases.
  */
+
 typedef struct info
 {
 	char *program_name;
@@ -43,10 +44,11 @@ typedef struct info
 } data_of_program;
 
 /**
- * struct builtins - struct for the builtins
- * @builtin: the name of the builtin
- * @function: the associated function to be called for each builtin
+ * struct builtins - The struct for the builtins.
+ * @builtin: The  builtin.
+ * @function: The associated funct to be called for each builtin.
  */
+
 typedef struct builtins
 {
 	char *builtin;
@@ -246,4 +248,4 @@ char *get_alias(data_of_program *data, char *alias);
 int set_alias(char *alias_string, data_of_program *data);
 
 
-#endif /* SHELL_H */
+#endif
