@@ -52,7 +52,8 @@ typedef struct info
 typedef struct builtins
 {
 	char *builtin;
-	int (*function)(data_of_program *data);} builtins;
+	int (*function)(data_of_program *data);
+} builtins;
 
 
 /************* MAIN FUNCTIONS *************/
