@@ -3,7 +3,8 @@
 /**
  * builtin_exit - Exits the program with a specified status code.
  * @data: Pointer to the program's data structure.
- * Return: Returns zero on success or other values for specific error conditions.
+ * Return: Returns zero on success or other values for specific
+ *error conditions.
  */
 
 int builtin_exit(data_of_program *data)
@@ -28,7 +29,8 @@ int builtin_exit(data_of_program *data)
 /**
  * builtin_cd - Changes the current working directory.
  * @data: Pointer to the program's data structure.
- * Return: Returns zero on success or other values for specific error conditions.
+ * Return: Returns zero on success or other values for specific
+ *error conditions.
  */
 int builtin_cd(data_of_program *data)
 {
@@ -67,7 +69,8 @@ int builtin_cd(data_of_program *data)
  * set_working_directory - Sets the working directory
  * @data: Pointer to the program's data structure.
  * @new_dir: Path to be set as the working directory.
- * Return: Returns zero on success or other values for specific error conditions.
+ * Return: Returns zero on success or other values for specific
+ *error conditions.
  */
 int set_working_directory(data_of_program *data, char *new_dir)
 {
@@ -93,7 +96,8 @@ int set_working_directory(data_of_program *data, char *new_dir)
 /**
  * builtin_help - Display help messages from shell commands.
  * @data: Pointer to the program's data structure.
- * Return: Returns zero on success or other values for specific error conditions.
+ * Return: Returns zero on success or other values for specific
+ *error conditions.
  */
 int builtin_help(data_of_program *data)
 {
@@ -138,7 +142,8 @@ int builtin_help(data_of_program *data)
 /**
  * builtin_alias - Adds, removes or shows aliases.
  * @data: Pointer to the program's data structure.
- * Return: Returns zero on success or other values for specific error conditions.
+ * Return: Returns zero on success or other values for specific
+ *error conditions.
  */
 int builtin_alias(data_of_program *data)
 {

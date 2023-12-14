@@ -3,7 +3,8 @@
 /**
  * builtin_env - Displays the shell environment.
  * @data: Pointer to the program's data structure.
- * Return: Returns zero on success or other values for specific error conditions.
+ * Return: Returns zero on success or other values for specific error
+ *conditions.
  */
 
 int builtin_env(data_of_program *data)
@@ -21,12 +22,10 @@ int builtin_env(data_of_program *data)
 		{
 			/* Checks if there is an '=' characterin the argument */
 			if (data->tokens[1][index] == '=')
-			{
-				/* Temporarily copy and modify an environmental variable if it exists */
+			{/* Temporarily copy and modify an environmental variable if it exists */
 				var_copy = str_duplicate(env_get_key(cpname, data));
 				if (var_copy != NULL)
-					env_set_key(cpname, data->tokens[1] + index+ 1, data);
-
+					env_set_key(cpname, data->tokens[1] + index + 1, data);
 				/* Print the environment */
 				print_environ(data);
 				if (env_get_key(cpname, data) == NULL)
@@ -36,7 +35,7 @@ int builtin_env(data_of_program *data)
 				}
 				else
 				{
-					/* Restore the old value of the variable */
+			      /* Restore the old value of the variable */
 					env_set_key(cpname, var_copy, data);
 					free(var_copy);
 				}
@@ -54,7 +53,8 @@ int builtin_env(data_of_program *data)
 /**
  * builtin_sets_env - Sets or modifies an environment variable.
  * @data: Pointer to the program's data structure.
- * Return: Returns zero on success, or other values for specific error conditions. 
+ * Return: Returns zero on success, or other values for specific error
+ *conditions.
  */
 int builtin_sets_env(data_of_program *data)
 {
@@ -76,7 +76,8 @@ int builtin_sets_env(data_of_program *data)
 /**
  * builtin_unsets_env - Removes an environment variable.
  * @data: Pointer to the program's data structure.
- * Return: Returns zero on success or other values for specific error conditions.
+ * Return: Returns zero on success or other values for specific error
+ *conditions.
  */
 
 int builtin_unsets_env(data_of_program *data)

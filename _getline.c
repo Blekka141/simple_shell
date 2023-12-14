@@ -13,8 +13,9 @@ int _getline(data_of_program *data)
 	static char array_operators[10] = {'\0'};
 	ssize_t bytes_read, i = 0;
 
-	/* Check if more commands in the array do not exist and checks the logical operators. */
-	
+	/* Check if more commands in the array do not exist and */
+	/* checks the logical operators. */
+
 	if (!array_commands[0] || (array_operators[0] == '&' && errno != 0) ||
 		(array_operators[0] == '|' && errno == 0))
 	{
@@ -29,7 +30,6 @@ int _getline(data_of_program *data)
 		bytes_read = read(data->file_descriptor, &buff, BUFFER_SIZE - 1);
 		if (bytes_read == 0)
 			return (-1);
-
 		/* Split lines on \n or ; */
 		i = 0;
 		do {
@@ -38,8 +38,7 @@ int _getline(data_of_program *data)
 			i = check_logic_ops(array_commands, i, array_operators);
 		} while (array_commands[i++]);
 	}
-
-	/* Obtains the next command (command 0) and removes it from the array */
+ /* Obtains the next command (command 0) and removes it from the array */
 	data->input_line = array_commands[0];
 	for (i = 0; array_commands[i]; i++)
 	{

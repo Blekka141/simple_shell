@@ -110,7 +110,7 @@ int execute(data_of_program *data);
 /*======== builtins_list.c ========*/
 
 /* If match a builtin, executes it */
-int builtin_lists(data_of_program *data);
+int builtins_list(data_of_program *data);
 
 
 /*======== find_in_path.c ========*/

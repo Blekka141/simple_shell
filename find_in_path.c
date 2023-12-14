@@ -16,7 +16,8 @@ int find_program(data_of_program *data)
 	if (!data->command_name)
 		return (2);
 
-	/* If the command name starts with '/' or '.', it's a full_path or in the current directory. */
+	/* If the command name starts with '/' or '.', it's a */
+	/* full_path or in the current directory. */
 	if (data->command_name[0] == '/' || data->command_name[0] == '.')
 		return (check_file(data->command_name));
 
@@ -53,7 +54,8 @@ int find_program(data_of_program *data)
 }
 
 /**
- * tokenize_path - Tokenize the PATH environmentvariable into an array of directories.
+ * tokenize_path - Tokenize the PATH environmentvariable into an
+ *array of directories.
  * @data: Pointer to the program's data.
  * Return: Array of path directories.
  */
@@ -103,7 +105,8 @@ char **tokenize_path(data_of_program *data)
  * check_file - Checks if a file exists, is not a dairectory and
  * has excecute permisions.
  * @full_path: Pointer to the full file path.
- * Return: 0 on success, or an error code if it doesn't exist or lacks permissions.
+ * Return: 0 on success, or an error code if it doesn't exist
+ *or lacks permissions.
  */
 
 int check_file(char *full_path)

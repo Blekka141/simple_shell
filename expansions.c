@@ -3,7 +3,7 @@
 /**
  * expand_variables - Expand variables in the input line.
  * @data: Pointer to the program's data structure.
- * This function expands variables like "$?" and "$$" in the input line, 
+ * This function expands variables like "$?" and "$$" in the input line,
  * and sets the expanded input line in the program's data structure.
  * Return: Nothing, but sets errno on error.
  */
@@ -20,27 +20,23 @@ void expand_variables(data_of_program *data)
 		if (line[n] == '#')
 			line[n--] = '\0';
 		else if (line[n] == '$' && line[n + 1] == '?')
-		{
-			/* Expand "$?" with the value of errno */
+		{	/* Expand "$?" with the value of errno */
 			line[n] = '\0';
 			long_to_string(errno, expansion, 10);
 			buffer_add(line, expansion);
 			buffer_add(line, data->input_line + n + 2);
 		}
 		else if (line[n] == '$' && line[n + 1] == '$')
-		{
-			/* Expand "$$" with the current process ID */
+		{/* Expand "$$" with the current process ID */
 			line[n] = '\0';
 			long_to_string(getpid(), expansion, 10);
 			buffer_add(line, expansion);
 			buffer_add(line, data->input_line + n + 2);
 		}
 		else if (line[n] == '$' && (line[n + 1] == ' ' || line[n + 1] == '\0'))
-			/* Skip "$" if it's not followed by a space or is at the end of the line */
-			continue;
+		continue;
 		else if (line[n] == '$')
-		{
-			/* Expand other variables of the form "$VAR" */
+		{/* Expand other variables of the form "$VAR" */
 			for (j = 1; line[n + j] && line[n + j] != ' '; j++)
 				expansion[j - 1] = line[n + j];
 			temp = env_get_key(expansion, data);
